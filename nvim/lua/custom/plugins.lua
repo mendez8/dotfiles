@@ -46,7 +46,9 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-
+  {
+    "mfussenegger/nvim-jdtls"
+  }
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
