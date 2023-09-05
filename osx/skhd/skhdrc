@@ -1,6 +1,6 @@
 # open terminal
 alt - return : open -n /Applications/Alacritty.app
-
+alt - w : open -n /Applications/LibreWolf.app
 
 # Spaces
 alt - c : yabai -m space --create
@@ -102,7 +102,7 @@ alt - n : yabai -m query --spaces --space \
             | xargs -I{} yabai -m window --focus {}
 
 # close focused window
-alt + shift - q : yabai -m window --close
+alt - q : yabai -m window --close
 
 
 # enter fullscreen mode for the focused container
