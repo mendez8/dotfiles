@@ -17,9 +17,8 @@ git clone git@github.com:mendez8/.dotfiles.git
 cd ~/workplace/.dotfiles/osx
 brew bundle
 
-# OSX fonts
-brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
+# ZSH prompt
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 
 # Alacritty
 mkdir -p ~/.config/alacritty/
