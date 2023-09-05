@@ -7,11 +7,11 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding
-yabai -m config top_padding    20
-yabai -m config bottom_padding 20
-yabai -m config left_padding   20
-yabai -m config right_padding  20
-yabai -m config window_gap     20
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     10
 
 
 yabai -m config window_border                on
@@ -46,4 +46,4 @@ yabai -m rule --add app="^QuickTime Player$" manage=off
 
 
 SKETCHYBAR_HEIGHT=$(sketchybar --query bar | jq '.height')
-yabai -m config external_bar all:0:$SKETCHYBAR_HEIGHT
+yabai -m config external_bar all:$SKETCHYBAR_HEIGHT:0

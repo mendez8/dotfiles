@@ -1,6 +1,11 @@
 # open terminal
 alt - return : open -n /Applications/Alacritty.app
 
+
+# Spaces
+alt - c : yabai -m space --create
+alt - d : yabai -m space --destroy
+
 # change focus
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
