@@ -1,19 +1,17 @@
 # Download and run this script
 
-# Prerrequisites
-## setup ssh keys
+# Setup ssh keys
 mkdir -p ~/.ssh
 cd ~/.ssh
 ssh-keygen -t ed25519 -C "mendez8@gmail.com"
 
-
+# Clone dotfiles
 mkdir -p ~/workplace
 cd ~/workplace
 git clone git@github.com:mendez8/.dotfiles.git
 
-# OSX Brew
+# Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 cd ~/workplace/.dotfiles/osx
 brew bundle
 
@@ -24,15 +22,15 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 mkdir -p ~/.config/alacritty/
 ln -s ~/workplace/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
-# OSX Yabai - PRERREQUISITE FOLLOW CRAZY README CONFIG
+# Yabai - PRERREQUISITE FOLLOW CRAZY Github README CONFIG
 mkdir -p ~/.config/yabai
 ln -s ~/workplace/.dotfiles/osx/yabai/yabairc ~/.config/yabai/yabairc
 chmod +x ~/.config/yabai/yabairc
 
-# OSX skhd
+# skhd
 mkdir -p ~/.config/skhd
 ln -s ~/workplace/.dotfiles/osx/skhd/skhdrc ~/.config/skhd/skhdrc
 
-# OSX Sketchybar
+# Sketchybar
 ln -s ~/workplace/.dotfiles/osx/sketchybar ~/.config/sketchybar
 
