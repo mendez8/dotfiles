@@ -6,8 +6,8 @@
 	--urlbar-focused-bg-color: #41404c;
 	--urlbar-not-focused-bg-color: #1c1b22;
 	--toolbar-bgcolor: #2b2a33 !important;
-	--tab-font: 'JetBrainsMono Nerd Font';
-	--urlbar-font: 'JetBrainsMono Nerd Font';
+	--tab-font: 'Hack Nerd Font';
+	--urlbar-font: 'Hack Nerd Font';
 
 	/* try increasing if you encounter problems */
 	--urlbar-height-setting: 24px;

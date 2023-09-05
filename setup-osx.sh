@@ -18,6 +18,9 @@ brew bundle
 # ZSH prompt
 echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 
+# FZF
+$(brew --prefix)/opt/fzf/install
+
 # Alacritty
 mkdir -p ~/.config/alacritty/
 ln -s ~/workplace/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
@@ -34,3 +37,6 @@ ln -s ~/workplace/.dotfiles/osx/skhd/skhdrc ~/.config/skhd/skhdrc
 # Sketchybar
 ln -s ~/workplace/.dotfiles/osx/sketchybar ~/.config/sketchybar
 
+# Firefox: config, extensions
+
+# Karabiner: firefox remapping
