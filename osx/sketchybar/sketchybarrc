@@ -14,7 +14,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 sketchybar --bar height=32        \
                  blur_radius=30   \
-                 position=bottom     \
+                 position=top     \
                  sticky=off       \
                  padding_left=10  \
                  padding_right=10 \
