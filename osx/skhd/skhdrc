@@ -1,6 +1,7 @@
 # open terminal
 alt - return : open -n /Applications/Alacritty.app
-alt - w : open -n /Applications/LibreWolf.app
+#alt - w : open -n /Applications/LibreWolf.app
+alt - w : /opt/homebrew/bin/librewolf
 
 # Spaces
 alt - c : yabai -m space --create

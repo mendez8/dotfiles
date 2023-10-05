@@ -28,3 +28,22 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/workplace/.dotfiles/zsh/git/git.plugin.zsh ] && source ~/workplace/.dotfiles/zsh/git/git.plugin.zsh
+
+# Aliases
+alias l='ls -lFh'          #size,show type,human readable
+alias la='ls -lAFh'        #long list,show almost all,show type,human readable
+alias lr='ls -tRFh'        #sorted by date,recursive,show type,human readable
+alias lt='ls -ltFh'        #long list,sorted by date,show type,human readable
+alias ll='ls -la'           #long list
+alias lh='ls -lhrt'
+alias ldot='ls -ld .*'
+alias lS='ls -1FSsh'
+alias lart='ls -1Fcart'
+alias lrt='ls -1Fcrt'
+
+alias bat='bat --theme=TwoDark'
+
+alias c='cd ~/workplace/test-miguelm-walkthrough'
+alias cn='c && nvim -c "colorscheme shine"'
+
+export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_teya_ed25519"
