@@ -1,8 +1,17 @@
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
+HISTSIZE=1000000
 SAVEHIST=1000000
+
+# The meaning of these options can be found in man page of `zshoptions`.
+setopt HIST_IGNORE_DUPS  
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
+
+
+###########################
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -43,7 +52,33 @@ alias lrt='ls -1Fcrt'
 
 alias bat='bat --theme=TwoDark'
 
-alias c='cd ~/workplace/test-miguelm-walkthrough'
-alias cn='c && nvim -c "colorscheme shine"'
+### WORKSPACE CONFIGURATION ###
+export WORKSPACE=~/workplace/commshub-sender-service
 
+alias c='cd $WORKSPACE'
+alias cn='c && nvim -c "colorscheme shine"'
+alias t="cd $WORKSPACE && tmux new-session -d && tmux send-keys 'cn' C-m && tmux new-window && tmux select-window -t 0 && tmux -2 attach-session"
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_teya_ed25519"
+
+export PATH="/Users/miguel.hernandez/workplace/flutter/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/miguel.hernandez/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/miguel.hernandez/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/miguel.hernandez/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/miguel.hernandez/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/miguel.hernandez/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
