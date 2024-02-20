@@ -98,6 +98,7 @@ require('lazy').setup({
     },
   },
   'mfussenegger/nvim-jdtls',
+  'towolf/vim-helm',
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -203,6 +204,7 @@ require('lazy').setup({
         --   return vim.fn.executable 'make' == 1
         -- end,
       },
+      'nvim-telescope/telescope-ui-select.nvim'
     },
   },
   {
@@ -226,17 +228,13 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-  -- Flutter
-
+  -- Markdown preview --
   {
-      'akinsho/flutter-tools.nvim',
-      lazy = false,
-      dependencies = {
-          'nvim-lua/plenary.nvim',
-          'stevearc/dressing.nvim', -- optional for vim.ui.select
-      },
-      config = true,
-  }
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -317,7 +315,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  defaults = {
+  defaults = {            
+    layout_strategy = "vertical",
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -347,6 +346,7 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'ui-select')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -478,7 +478,7 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- Create a command `:Format` local to the LSP buffer
+-- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
@@ -499,12 +499,16 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
- -- jdtls = {
-  
+  -- jdtls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+    },
+  },
+  helm_ls = {
+    yamlls = {
+      enabled = false,
     },
   },
 }
@@ -525,6 +529,9 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
+    if server_name == 'jdtls' then
+      return
+    end
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
@@ -534,6 +541,19 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'java',
+  callback = function()
+    local config = {
+      cmd = {'jdtls',
+            "--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$HOME/workplace/lib/lombok.jar"))},
+      root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+    require('jdtls').start_or_attach(config)
+  end,
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -610,9 +630,9 @@ require("neotest").setup({
   }
 })
 
--- Configure Flutter
--- require("flutter-tools").setup {} -- use defaults
+-- Dotenv for environment variables loading from .env files
 require('dotenv').setup()
+
 -- Other file types
 vim.cmd [[
 autocmd BufRead,BufNewFile Tiltfile set filetype=starlark 

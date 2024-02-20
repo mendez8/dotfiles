@@ -82,3 +82,5 @@ unset __conda_setup
 export PATH="/Users/miguel.hernandez/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
