@@ -58,9 +58,10 @@ alias bat='bat --theme=TwoDark'
 export WORKSPACE=~/workplace/commshub-sender-service
 
 alias c='cd $WORKSPACE'
-alias cn='c && nvim -c "colorscheme shine"'
+alias cn='c && nvim'
 alias t="cd $WORKSPACE && tmux new-session -d && tmux send-keys 'cn' C-m && tmux new-window && tmux select-window -t 0 && tmux -2 attach-session"
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_teya_ed25519"
+e() { export TOKEN="$1" }
 
 export PATH="/Users/miguel.hernandez/workplace/flutter/bin:$PATH"
 
